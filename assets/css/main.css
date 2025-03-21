@@ -145,7 +145,6 @@ h6 {
 .header {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -208,7 +207,6 @@ h6 {
     padding: 0;
     display: flex;
     list-style: none;
-    align-items: center;
   }
 
   .navmenu li {
@@ -250,7 +248,7 @@ h6 {
 }
 
 /* Navmenu - Mobile */
-@media (max-width: 800px) {
+@media (max-width: 1199px) {
   .mobile-nav-toggle {
     color: var(--nav-color);
     font-size: 28px;
@@ -655,11 +653,12 @@ section,
 @media (max-width: 576px) {
   .hero .cta-buttons {
     flex-direction: column;
+    display: block;
   }
 }
 
 .hero .cta-buttons .btn {
-  padding: 0.8rem 2rem;
+  padding: 0.8rem 0.8rem;
   font-size: 1rem;
   font-weight: 500;
   border-radius: 50px;
