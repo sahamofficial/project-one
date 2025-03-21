@@ -804,20 +804,20 @@ section,
 
 @keyframes moveUpDown {
   0% {
-    transform: translateY(0) rotate(0deg);
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-80px) rotate(180deg);
+    transform: translateY(-40px);
   }
   100% {
-    transform: translateY(0) rotate(360deg);
+    transform: translateY(0);
   }
 }
 
 .hero .hero-image img {
   position: relative;
   z-index: 2;
-  animation: moveUpDown 20s linear infinite;
+  animation: moveUpDown 5s ease-in-out infinite;
 }
 
 .hero .hero-image .shape-1,
