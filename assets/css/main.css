@@ -802,9 +802,22 @@ section,
   padding: 2rem;
 }
 
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-80px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
 .hero .hero-image img {
   position: relative;
   z-index: 2;
+  animation: moveUpDown 20s linear infinite;
 }
 
 .hero .hero-image .shape-1,
