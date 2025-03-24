@@ -815,13 +815,13 @@ section,
 
 
 /*--------------------------------------------------------------
-# Portfolio Section
+# products Section
 --------------------------------------------------------------*/
-.portfolio .portfolio-filters-container {
+.products .products-filters-container {
   margin-bottom: 40px;
 }
 
-.portfolio .portfolio-filters {
+.products .products-filters {
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -831,7 +831,7 @@ section,
   list-style: none;
 }
 
-.portfolio .portfolio-filters li {
+.products .products-filters li {
   font-size: 15px;
   font-weight: 500;
   padding: 8px 20px;
@@ -842,18 +842,18 @@ section,
   transition: all 0.3s ease-in-out;
 }
 
-.portfolio .portfolio-filters li:hover {
+.products .products-filters li:hover {
   background-color: color-mix(in srgb, var(--accent-color), transparent 85%);
   color: var(--accent-color);
   transform: translateY(-2px);
 }
 
-.portfolio .portfolio-filters li.filter-active {
+.products .products-filters li.filter-active {
   background-color: var(--accent-color);
   color: var(--contrast-color);
 }
 
-.portfolio .portfolio-card {
+.products .products-card {
   background-color: var(--surface-color);
   border-radius: 15px;
   overflow: hidden;
@@ -861,34 +861,34 @@ section,
   transition: all 0.3s ease-in-out;
 }
 
-.portfolio .portfolio-card:hover {
+.products .products-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 35px rgba(0, 0, 0, 0.1);
 }
 
-.portfolio .portfolio-card:hover .portfolio-overlay {
+.products .products-card:hover .products-overlay {
   opacity: 1;
   visibility: visible;
 }
 
-.portfolio .portfolio-card:hover .portfolio-overlay .portfolio-actions {
+.products .products-card:hover .products-overlay .products-actions {
   transform: translateY(0);
 }
 
-.portfolio .portfolio-card .portfolio-image {
+.products .products-card .products-image {
   position: relative;
   overflow: hidden;
   aspect-ratio: 16/10;
 }
 
-.portfolio .portfolio-card .portfolio-image img {
+.products .products-card .products-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 0.6s ease-in-out;
 }
 
-.portfolio .portfolio-card .portfolio-overlay {
+.products .products-card .products-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -903,14 +903,14 @@ section,
   padding: 20px;
 }
 
-.portfolio .portfolio-card .portfolio-overlay .portfolio-actions {
+.products .products-card .products-overlay .products-actions {
   transform: translateY(20px);
   transition: all 0.4s ease-in-out;
   display: flex;
   gap: 15px;
 }
 
-.portfolio .portfolio-card .portfolio-overlay .portfolio-actions a {
+.products .products-card .products-overlay .products-actions a {
   width: 45px;
   height: 45px;
   background-color: var(--surface-color);
@@ -923,17 +923,17 @@ section,
   transition: all 0.3s ease;
 }
 
-.portfolio .portfolio-card .portfolio-overlay .portfolio-actions a:hover {
+.products .products-card .products-overlay .products-actions a:hover {
   background-color: var(--accent-color);
   color: var(--contrast-color);
   transform: scale(1.1);
 }
 
-.portfolio .portfolio-card .portfolio-content {
+.products .products-card .products-content {
   padding: 25px;
 }
 
-.portfolio .portfolio-card .portfolio-content .category {
+.products .products-card .products-content .category {
   font-size: 14px;
   color: var(--accent-color);
   text-transform: uppercase;
@@ -943,18 +943,18 @@ section,
   margin-bottom: 10px;
 }
 
-.portfolio .portfolio-card .portfolio-content h3 {
+.products .products-card .products-content h3 {
   font-size: 20px;
   margin: 0 0 15px;
   font-weight: 600;
   transition: color 0.3s ease;
 }
 
-.portfolio .portfolio-card .portfolio-content h3:hover {
+.products .products-card .products-content h3:hover {
   color: var(--accent-color);
 }
 
-.portfolio .portfolio-card .portfolio-content p {
+.products .products-card .products-content p {
   font-size: 15px;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   margin: 0;
@@ -962,20 +962,20 @@ section,
 }
 
 @media (max-width: 768px) {
-  .portfolio .portfolio-filters li {
+  .products .products-filters li {
     font-size: 14px;
     padding: 6px 15px;
   }
 
-  .portfolio .portfolio-card .portfolio-content {
+  .products .products-card .products-content {
     padding: 20px;
   }
 
-  .portfolio .portfolio-card .portfolio-content h3 {
+  .products .products-card .products-content h3 {
     font-size: 18px;
   }
 
-  .portfolio .portfolio-card .portfolio-content p {
+  .products .products-card .products-content p {
     font-size: 14px;
   }
 }
@@ -1341,9 +1341,9 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details Section
+# products Details Section
 --------------------------------------------------------------*/
-.portfolio-details .portfolio-info h3 {
+.products-details .products-info h3 {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -1351,7 +1351,7 @@ section,
   position: relative;
 }
 
-.portfolio-details .portfolio-info h3:after {
+.products-details .products-info h3:after {
   content: "";
   position: absolute;
   display: block;
@@ -1362,26 +1362,26 @@ section,
   bottom: 0;
 }
 
-.portfolio-details .portfolio-info ul {
+.products-details .products-info ul {
   list-style: none;
   padding: 0;
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li {
+.products-details .products-info ul li {
   display: flex;
   flex-direction: column;
   padding-bottom: 15px;
 }
 
-.portfolio-details .portfolio-info ul strong {
+.products-details .products-info ul strong {
   text-transform: uppercase;
   font-weight: 400;
   color: color-mix(in srgb, var(--default-color), transparent 50%);
   font-size: 14px;
 }
 
-.portfolio-details .portfolio-info .btn-visit {
+.products-details .products-info .btn-visit {
   padding: 8px 40px;
   background: var(--accent-color);
   color: var(--contrast-color);
@@ -1389,28 +1389,28 @@ section,
   transition: 0.3s;
 }
 
-.portfolio-details .portfolio-info .btn-visit:hover {
+.products-details .products-info .btn-visit:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-.portfolio-details .portfolio-description h2 {
+.products-details .products-description h2 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.portfolio-details .portfolio-description p {
+.products-details .products-description p {
   padding: 0;
 }
 
-.portfolio-details .portfolio-description .testimonial-item {
+.products-details .products-description .testimonial-item {
   padding: 30px 30px 0 30px;
   position: relative;
   background: color-mix(in srgb, var(--default-color), transparent 97%);
   margin-bottom: 50px;
 }
 
-.portfolio-details .portfolio-description .testimonial-item .testimonial-img {
+.products-details .products-description .testimonial-item .testimonial-img {
   width: 90px;
   border-radius: 50px;
   border: 6px solid var(--background-color);
@@ -1418,33 +1418,33 @@ section,
   margin: 0 10px 0 0;
 }
 
-.portfolio-details .portfolio-description .testimonial-item h3 {
+.products-details .products-description .testimonial-item h3 {
   font-size: 18px;
   font-weight: bold;
   margin: 15px 0 5px 0;
   padding-top: 20px;
 }
 
-.portfolio-details .portfolio-description .testimonial-item h4 {
+.products-details .products-description .testimonial-item h4 {
   font-size: 14px;
   color: #6c757d;
   margin: 0;
 }
 
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-left,
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
+.products-details .products-description .testimonial-item .quote-icon-left,
+.products-details .products-description .testimonial-item .quote-icon-right {
   color: color-mix(in srgb, var(--accent-color), transparent 50%);
   font-size: 26px;
   line-height: 0;
 }
 
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-left {
+.products-details .products-description .testimonial-item .quote-icon-left {
   display: inline-block;
   left: -5px;
   position: relative;
 }
 
-.portfolio-details .portfolio-description .testimonial-item .quote-icon-right {
+.products-details .products-description .testimonial-item .quote-icon-right {
   display: inline-block;
   right: -5px;
   position: relative;
@@ -1452,7 +1452,7 @@ section,
   transform: scale(-1, -1);
 }
 
-.portfolio-details .portfolio-description .testimonial-item p {
+.products-details .products-description .testimonial-item p {
   font-style: italic;
   margin: 0 0 15px 0 0 0;
   padding: 0;
