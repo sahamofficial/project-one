@@ -398,15 +398,6 @@ h6 {
      */
     /*--------------------------------------------------------------*/
 
- .navmenu {
-    padding: 0;
-    z-index: 9997;
-    background: #e5e5e5;
-    background-size: 400% 400%;
-    animation: gradientAnimation 10s ease-in-out infinite;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
   .navmenu ul {
     list-style: none;
     padding: 0 0 20px;
@@ -513,10 +504,49 @@ h6 {
     background-color: rgba(33, 37, 41, 0.03);
   }
 
-    /*--------------------------------------------------------------*/
-
 }
-/*--------------------------------------------------------------*/
+
+/* Mobile styles */
+@media (max-width: 767.98px) {
+  .header {
+    text-align: center;
+  }
+  
+  .header-container {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  
+  .logo {
+    margin-bottom: 1rem;
+  }
+  
+  .navmenu ul {
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .nav-text {
+    display: none;
+  }
+  
+  .navicon {
+    font-size: 1.5rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+  .navmenu ul {
+    gap: 2rem;
+  }
+  
+  .navicon {
+    margin-right: 0.5rem;
+  }
+}
+
+/*--------------------------------------------------------------
 
  .header .header-toggle {
     color: var(--contrast-color);
