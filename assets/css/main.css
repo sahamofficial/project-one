@@ -272,7 +272,7 @@ h6 {
 
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
-  .mobile-nav-toggle {
+  /* .mobile-nav-toggle {
     color: var(--nav-color);
     font-size: 28px;
     line-height: 0;
@@ -394,8 +394,175 @@ h6 {
 
   .mobile-nav-active .navmenu>ul {
     display: block;
+    }
+     */
+    /*--------------------------------------------------------------*/
+
+ .navmenu {
+    padding: 0;
+    z-index: 9997;
+    background: #e5e5e5;
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease-in-out infinite;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
+  
+  .navmenu ul {
+    list-style: none;
+    padding: 0 0 20px;
+    margin: 0;
+  }
+  
+  .navmenu a,
+  .navmenu a:focus {
+    color: var(--nav-color);
+    padding: 15px 10px;
+    font-family: var(--nav-font);
+    font-size: 16px;
+    font-weight: 400;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    transition: 0.3s;
+    width: 100%;
+  }
+  
+  .navmenu a .navicon,
+  .navmenu a:focus .navicon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .navmenu a .toggle-dropdown,
+  .navmenu a:focus .toggle-dropdown {
+    font-size: 12px;
+    line-height: 0;
+    margin-left: auto;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: 0.3s;
+    flex-shrink: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .navmenu a .toggle-dropdown:hover,
+  .navmenu a:focus .toggle-dropdown:hover {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+  }
+  
+  .navmenu .active,
+  .navmenu .active:focus,
+  .navmenu a:hover {
+    color: var(--nav-hover-color);
+  }
+  
+  .navmenu .active .toggle-dropdown,
+  .navmenu .active:focus .toggle-dropdown {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    transform: rotate(180deg);
+  }
+  
+  .navmenu .dropdown {
+    display: block;
+  }
+  
+  .navmenu .dropdown a,
+  .navmenu .dropdown a:focus {
+    color: var(--nav-dropdown-color);
+  }
+  
+  /* Smooth dropdown fade-in animation */
+  @keyframes dropdownFade {
+    0% { opacity: 0; transform: translateY(-10px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  .navmenu .dropdown ul {
+    position: absolute;
+    display: none;
+    z-index: 99;
+    padding: 8px 12px;
+    margin-top: 5px;
+    background: linear-gradient(135deg, #040b14, #081525, #002137, #00253e);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  }
+  
+  /* Show dropdown on hover with animation */
+  .navmenu .dropdown:hover ul {
+    display: block;
+    animation: dropdownFade 0.5s ease-in-out forwards;
+  }
+  
+  .navmenu .dropdown ul ul {
+    background-color: rgba(33, 37, 41, 0.1);
+  }
+  
+  .navmenu .dropdown > .dropdown-active {
+    display: block;
+    background-color: rgba(33, 37, 41, 0.03);
+  }
+
+    /*--------------------------------------------------------------*/
+
 }
+/*--------------------------------------------------------------*/
+
+ .header .header-toggle {
+    color: var(--contrast-color);
+    background-color: var(--accent-color);
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    transition: background-color 0.3s;
+  }
+  
+  .header .header-toggle:hover {
+    color: var(--contrast-color);
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .mobile-nav-toggle {
+    display: none;
+  }
+  
+  @media (min-width: 1200px) {
+    .header ~ #footer,
+    .header ~ main {
+      margin-left: 300px;
+    }
+  }
+  
+  @media (max-width: 1199px) {
+    .header {
+      left: -100%;
+    }
+  }
+  
+  .header.header-show {
+    left: 0;
+  }
+
+/*--------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
 # Global Footer
