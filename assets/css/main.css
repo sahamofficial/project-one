@@ -506,34 +506,49 @@ h6 {
 
 }
 
-/* Mobile styles */
 @media (max-width: 767.98px) {
   .header {
     text-align: center;
   }
-  
+
   .header-container {
     flex-direction: column !important;
     align-items: center;
+    justify-content: center;
+    text-align: center;
   }
-  
+
   .logo {
-    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
   }
-  
+
+  .logo img {
+    max-width: 80px;
+  }
+
+  .sitename {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+  }
+
   .navmenu ul {
     justify-content: center;
     gap: 1rem;
   }
-  
+
   .nav-text {
     display: none;
   }
-  
+
   .navicon {
     font-size: 1.5rem;
   }
 }
+
 
 /* Desktop styles */
 @media (min-width: 768px) {
