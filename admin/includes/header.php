@@ -49,6 +49,7 @@
                         </li>
 
                         <li><a href="change-password.php">Change Password</a></li>
+                        <li><a href="change-username.php">Change Username</a></li>
                     </ul>
                 </div>
             </div>
