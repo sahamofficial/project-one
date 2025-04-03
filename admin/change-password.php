@@ -2,32 +2,43 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
+
 if (strlen($_SESSION['alogin']) == 0) {
   header('location:index.php');
 } else {
   if (isset($_POST['change'])) {
-    $password = md5($_POST['password']);
-    $newpassword = md5($_POST['newpassword']);
+    $password = $_POST['password'];
+    $newpassword = $_POST['newpassword'];
     $username = $_SESSION['alogin'];
-    $sql = "SELECT Password FROM admin where UserName=:username and Password=:password";
+
+    $sql = "SELECT Password FROM admin WHERE UserName=:username";
     $query = $dbh->prepare($sql);
     $query->bindParam(':username', $username, PDO::PARAM_STR);
-    $query->bindParam(':password', $password, PDO::PARAM_STR);
     $query->execute();
-    $results = $query->fetchAll(PDO::FETCH_OBJ);
-    if ($query->rowCount() > 0) {
-      $con = "update admin set Password=:newpassword where UserName=:username";
-      $chngpwd1 = $dbh->prepare($con);
-      $chngpwd1->bindParam(':username', $username, PDO::PARAM_STR);
-      $chngpwd1->bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
-      $chngpwd1->execute();
-      $msg = "Your Password succesfully changed";
+    $result = $query->fetch(PDO::FETCH_OBJ);
+
+    if ($result) {
+      if (password_verify($password, $result->Password)) {
+        $hashedNewPassword = password_hash($newpassword, PASSWORD_DEFAULT);
+
+        $update_sql = "UPDATE admin SET Password=:newpassword WHERE UserName=:username";
+        $update_query = $dbh->prepare($update_sql);
+        $update_query->bindParam(':username', $username, PDO::PARAM_STR);
+        $update_query->bindParam(':newpassword', $hashedNewPassword, PDO::PARAM_STR);
+        $update_query->execute();
+
+        echo "<script>alert('Your password has been successfully changed!'); window.location.href='change-password.php';</script>";
+        exit();
+      } else {
+        echo "<script>alert('Your current password is incorrect!');</script>";
+      }
     } else {
-      $error = "Your current password is wrong";
+      echo "<script>alert('User not found!');</script>";
     }
   }
-
   ?>
+
+
   <!DOCTYPE html>
   <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -37,13 +48,9 @@ if (strlen($_SESSION['alogin']) == 0) {
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Online Library Management System | </title>
-    <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME STYLE  -->
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- CUSTOM STYLE  -->
     <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- GOOGLE FONT -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <style>
       .errorWrap {
@@ -77,9 +84,7 @@ if (strlen($_SESSION['alogin']) == 0) {
   </script>
 
   <body>
-    <!------MENU SECTION START-->
     <?php include('includes/header.php'); ?>
-    <!-- MENU SECTION END-->
     <div class="content-wrapper">
       <div class="container">
         <div class="row pad-botm">
@@ -88,9 +93,9 @@ if (strlen($_SESSION['alogin']) == 0) {
           </div>
         </div>
         <?php if ($error) { ?>
-          <div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } else if ($msg) { ?>
+          <div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div>
+        <?php } else if ($msg) { ?>
             <div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
-        <!--LOGIN PANEL START-->
         <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
             <div class="panel panel-info">
@@ -121,18 +126,13 @@ if (strlen($_SESSION['alogin']) == 0) {
             </div>
           </div>
         </div>
-        <!---LOGIN PABNEL END-->
-
 
       </div>
     </div>
-    <!-- CONTENT-WRAPPER SECTION END-->
+
     <?php include('includes/footer.php'); ?>
-    <!-- FOOTER SECTION END-->
     <script src="assets/js/jquery-1.10.2.js"></script>
-    <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
-    <!-- CUSTOM SCRIPTS  -->
     <script src="assets/js/custom.js"></script>
   </body>
 
