@@ -3,7 +3,7 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if (strlen($_SESSION['alogin']) == 0) {
-  header('location:index.php');
+  header('location:../adminlogin.php');
 } else { ?>
   <!DOCTYPE html>
   <html xmlns="http://www.w3.org/1999/xhtml">
@@ -41,19 +41,19 @@ if (strlen($_SESSION['alogin']) == 0) {
         </div>
 
         <div class="row">
-          <a href="manage-books.php">
+          <a href="manage-categories.php">
             <div class="col-md-3 col-sm-3 col-xs-6">
               <div class="alert alert-success back-widget-set text-center">
                 <i class="fa fa-book fa-5x"></i>
                 <?php
-                $sql = "SELECT id from tblbooks ";
+                $sql = "SELECT id from categories ";
                 $query = $dbh->prepare($sql);
                 $query->execute();
                 $results = $query->fetchAll(PDO::FETCH_OBJ);
-                $listdbooks = $query->rowCount();
+                $listdcategories = $query->rowCount();
                 ?>
-                <h3><?php echo htmlentities($listdbooks); ?></h3>
-                Products Listed
+                <h3><?php echo htmlentities($listdcategories); ?></h3>
+                Categories Listed
               </div>
             </div>
           </a>
@@ -64,7 +64,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                 <div class="alert alert-info back-widget-set text-center">
                   <i class="fa fa-file-archive-o fa-5x"></i>
                   <?php
-                  $sql5 = "SELECT id from tblcategory ";
+                  $sql5 = "SELECT id from products ";
                   $query5 = $dbh->prepare($sql5);
                   $query5->execute();
                   $results5 = $query5->fetchAll(PDO::FETCH_OBJ);
@@ -72,7 +72,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                   ?>
 
                   <h3><?php echo htmlentities($listdcats); ?> </h3>
-                  Listed Categories
+                  Products Listed
                 </div>
               </div>
             </a>

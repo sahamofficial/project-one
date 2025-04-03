@@ -38,13 +38,13 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Books <i
+                            <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Products <i
                                     class="fa fa-angle-down"></i></a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="add-book.php">Add
-                                        Book</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-books.php">Manage
-                                        Books</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="add-product.php">Add
+                                        Product</a></li>
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="manage-products.php">Manage
+                                        Products</a></li>
                             </ul>
                         </li>
 

@@ -3,11 +3,11 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if (strlen($_SESSION['alogin']) == 0) {
-    header('location:index.html');
+    header('location:../adminlogin.php');
 } else {
     if (isset($_GET['del'])) {
         $id = $_GET['del'];
-        $sql = "delete from tblcategory  WHERE id=:id";
+        $sql = "delete from categories  WHERE id=:id";
         $query = $dbh->prepare($sql);
         $query->bindParam(':id', $id, PDO::PARAM_STR);
         $query->execute();
@@ -107,8 +107,8 @@ if (strlen($_SESSION['alogin']) == 0) {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Category</th>
-                                                <th>Status</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
@@ -126,12 +126,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                         <td class="center"><?php echo htmlentities($result->name); ?></td>
 
-                                                        <td class="center"><?php if ($result->Status == 1) { ?>
-                                                                <a href="#" class="btn btn-success btn-xs">Inactive</a>
-                                                            <?php } else { ?>
-                                                                <a href="#" class="btn btn-danger btn-xs">Active</a>
-                                                            <?php } ?>
-                                                        </td>
+                                                        <td class="center"><?php echo htmlentities($result->description); ?></td>
 
                                                         <td class="center">
 
@@ -140,8 +135,10 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                                     class="btn btn-primary"><i class="fa fa-edit "></i>
                                                                     Edit</button>
                                                                 <a href="manage-categories.php?del=<?php echo htmlentities($result->id); ?>"
-                                                                    onclick="return confirm('Are you sure you want to delete?');"" >  <button class="
-                                                                    btn btn-danger"><i class="fa fa-pencil"></i> Delete</button>
+                                                                    onclick="return confirm('Are you sure you want to delete?');">
+                                                                    <button class="
+                                                                    btn btn-danger"><i class="fa fa-pencil"></i>
+                                                                        Delete</button>
                                                         </td>
                                                     </tr>
                                                     <?php $cnt = $cnt + 1;
