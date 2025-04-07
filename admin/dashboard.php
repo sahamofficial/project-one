@@ -14,16 +14,6 @@ if (strlen($_SESSION['alogin']) == 0) {
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>The Blossoming Buds | Admin Dash Board</title>
-    <!-- BOOTSTRAP CORE STYLE  -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
-    <!-- FONT AWESOME STYLE  -->
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    <!-- CUSTOM STYLE  -->
-    <link href="assets/css/style.css" rel="stylesheet" />
-    <!-- GOOGLE FONT -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-
   </head>
 
   <body>
@@ -80,16 +70,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
         </div>
       </div>
-      <!-- CONTENT-WRAPPER SECTION END-->
+
       <?php include('includes/footer.php'); ?>
-      <!-- FOOTER SECTION END-->
-      <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-      <!-- CORE JQUERY  -->
-      <script src="assets/js/jquery-1.10.2.js"></script>
-      <!-- BOOTSTRAP SCRIPTS  -->
-      <script src="assets/js/bootstrap.js"></script>
-      <!-- CUSTOM SCRIPTS  -->
-      <script src="assets/js/custom.js"></script>
   </body>
 
   </html>

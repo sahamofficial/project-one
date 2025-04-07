@@ -26,24 +26,14 @@ if (strlen($_SESSION['alogin']) == 0) {
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>The Blossoming Buds | Manage Categories</title>
-        <!-- BOOTSTRAP CORE STYLE  -->
-        <link href="assets/css/bootstrap.css" rel="stylesheet" />
-        <!-- FONT AWESOME STYLE  -->
-        <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <!-- DATATABLE STYLE  -->
-        <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
-        <!-- CUSTOM STYLE  -->
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <!-- GOOGLE FONT -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+        <title>New Royal Flowers | Manage Categories</title>
 
     </head>
 
     <body>
-        <!------MENU SECTION START-->
+
         <?php include('includes/header.php'); ?>
-        <!-- MENU SECTION END-->
+
         <div class="content-wrapper">
             <div class="container">
                 <div class="row pad-botm">
@@ -99,7 +89,9 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <!-- Advanced Tables -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Categories Listing
+                                <Span>Categories Listing</Span>
+                                <a href="add-category.php?catid=<?php echo htmlentities($result->id); ?>">
+                                    <button class="btn btn-primary"><i class="fa fa-edit "></i>Add</button>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
