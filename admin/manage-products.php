@@ -56,7 +56,7 @@ if(strlen($_SESSION['alogin'])==0) {
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>Product Name</th>
+                                            <th>Name</th>
                                             <th>Category</th>
                                             <th>Price</th>
                                             <th>Image</th>
@@ -81,7 +81,7 @@ if(strlen($_SESSION['alogin'])==0) {
                                                     <td class="center"><?php echo htmlentities($result->category);?></td>
                                                     <td class="center">$<?php echo htmlentities($result->price);?></td>
                                                     <td class="center">
-                                                        <img src="productimg/<?php echo htmlentities($result->image);?>" width="100">
+                                                        <img src="productImg/<?php echo htmlentities($result->image);?>" width="100">
                                                     </td>
                                                     <td class="center">
                                                         <a href="edit-products.php?id=<?php echo htmlentities($result->id);?>">

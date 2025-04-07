@@ -20,7 +20,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         if (!in_array($extension, $allowed_extensions)) {
             echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
         } else {
-            move_uploaded_file($_FILES["productpic"]["tmp_name"], "productimg/" . $imgnewname);
+            move_uploaded_file($_FILES["productpic"]["tmp_name"], "productImg/" . $imgnewname);
             $sql = "INSERT INTO products (name, catid, price, image) VALUES (:name, :category, :price, :imgnewname)";
             $query = $dbh->prepare($sql);
             $query->bindParam(':name', $name, PDO::PARAM_STR);
