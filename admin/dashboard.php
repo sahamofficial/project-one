@@ -17,9 +17,9 @@ if (strlen($_SESSION['alogin']) == 0) {
   </head>
 
   <body>
-    <!------MENU SECTION START-->
-    <?php include('includes/header.php'); ?>
-    <!-- MENU SECTION END-->
+
+  <?php include('includes/header.php'); ?>
+
     <div class="content-wrapper">
       <div class="container">
         <div class="row pad-botm">

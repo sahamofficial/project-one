@@ -76,7 +76,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                             <div class="panel-heading">
                                 <Span>Categories Listing</Span>
                                 <a href="add-category.php?catid=<?php echo htmlentities($result->id); ?>">
-                                    <button class="btn btn-primary"><i class="fa fa-edit "></i>Add</button>
+                                    <button class="btn btn-primary"><i class="fa fa-edit "></i>Add</button></a>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -136,7 +136,15 @@ if (strlen($_SESSION['alogin']) == 0) {
             </div>
         </div>
 
-        <!-- CONTENT-WRAPPER SECTION END-->
+        <script>// auto close alert messages
+            setTimeout(function () {
+                document.querySelectorAll('.alert').forEach(function (alert) {
+                    alert.classList.remove('show');
+                    alert.classList.add('fade');
+                });
+            }, 3000);
+        </script>
+
         <?php include('includes/footer.php'); ?>
     </body>
 

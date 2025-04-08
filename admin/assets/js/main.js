@@ -1,11 +1,3 @@
-// auto close alert messages
-setTimeout(function () {
-    document.querySelectorAll('.alert').forEach(function (alert) {
-        alert.classList.remove('show');
-        alert.classList.add('fade');
-    });
-}, 3000);
-
 // Delete confirmation for categories
 // This script uses SweetAlert2 for confirmation dialogs
 document.addEventListener('DOMContentLoaded', function () {
