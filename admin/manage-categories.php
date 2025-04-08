@@ -41,46 +41,31 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <h4 class="header-line">Manage Categories</h4>
                     </div>
                     <div class="row">
-                        <?php if ($_SESSION['error'] != "") { ?>
-                            <div class="col-md-6">
-                                <div class="alert alert-danger">
-                                    <strong>Error :</strong>
-                                    <?php echo htmlentities($_SESSION['error']); ?>
-                                    <?php echo htmlentities($_SESSION['error'] = ""); ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <?php if ($_SESSION['msg'] != "") { ?>
-                            <div class="col-md-6">
-                                <div class="alert alert-success">
-                                    <strong>Success :</strong>
-                                    <?php echo htmlentities($_SESSION['msg']); ?>
-                                    <?php echo htmlentities($_SESSION['msg'] = ""); ?>
-                                </div>
-                            </div>
-                        <?php } ?>
-                        <?php if ($_SESSION['updatemsg'] != "") { ?>
-                            <div class="col-md-6">
-                                <div class="alert alert-success">
-                                    <strong>Success :</strong>
-                                    <?php echo htmlentities($_SESSION['updatemsg']); ?>
-                                    <?php echo htmlentities($_SESSION['updatemsg'] = ""); ?>
-                                </div>
-                            </div>
-                        <?php } ?>
+                        <?php
+                        $alerts = [
+                            'error' => 'danger',
+                            'msg' => 'success',
+                            'updatemsg' => 'success',
+                            'delmsg' => 'success'
+                        ];
 
-
-                        <?php if ($_SESSION['delmsg'] != "") { ?>
-                            <div class="col-md-6">
-                                <div class="alert alert-success">
-                                    <strong>Success :</strong>
-                                    <?php echo htmlentities($_SESSION['delmsg']); ?>
-                                    <?php echo htmlentities($_SESSION['delmsg'] = ""); ?>
+                        foreach ($alerts as $key => $type) {
+                            if (!empty($_SESSION[$key])) {
+                                ?>
+                                <div class="col-md-6">
+                                    <div class="alert alert-<?php echo $type; ?> alert-dismissible fade show" role="alert">
+                                        <strong><?php echo ucfirst($type); ?>:</strong>
+                                        <?php echo htmlentities($_SESSION[$key]); ?>
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php } ?>
-
+                                <?php
+                                $_SESSION[$key] = "";
+                            }
+                        }
+                        ?>
                     </div>
+
 
 
                 </div>
@@ -126,11 +111,11 @@ if (strlen($_SESSION['alogin']) == 0) {
                                                                 href="edit-category.php?catid=<?php echo htmlentities($result->id); ?>"><button
                                                                     class="btn btn-primary"><i class="fa fa-edit "></i>
                                                                     Edit</button>
-                                                                <a href="manage-categories.php?del=<?php echo htmlentities($result->id); ?>"
-                                                                    onclick="return confirm('Are you sure you want to delete?');">
-                                                                    <button class="
-                                                                    btn btn-danger"><i class="fa fa-pencil"></i>
-                                                                        Delete</button>
+                                                                <a href="javascript:void(0);" class="btn btn-danger delete-btn"
+                                                                    data-id="<?php echo htmlentities($result->id); ?>">
+                                                                    <i class="fa fa-trash"></i> Delete
+                                                                </a>
+
                                                         </td>
                                                     </tr>
                                                     <?php $cnt = $cnt + 1;
@@ -153,17 +138,6 @@ if (strlen($_SESSION['alogin']) == 0) {
 
         <!-- CONTENT-WRAPPER SECTION END-->
         <?php include('includes/footer.php'); ?>
-        <!-- FOOTER SECTION END-->
-        <!-- JAVASCRIPT FILES PLACED AT THE BOTTOM TO REDUCE THE LOADING TIME  -->
-        <!-- CORE JQUERY  -->
-        <script src="assets/js/jquery-1.10.2.js"></script>
-        <!-- BOOTSTRAP SCRIPTS  -->
-        <script src="assets/js/bootstrap.js"></script>
-        <!-- DATATABLE SCRIPTS  -->
-        <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-        <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-        <!-- CUSTOM SCRIPTS  -->
-        <script src="assets/js/custom.js"></script>
     </body>
 
     </html>
