@@ -111,11 +111,7 @@ if(strlen($_SESSION['alogin'])==0) {
     </div>
 
     <?php include('includes/footer.php');?>
-    <script src="assets/js/jquery-1.10.2.js"></script>
-    <script src="assets/js/bootstrap.js"></script>
-    <script src="assets/js/dataTables/jquery.dataTables.js"></script>
-    <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-    <script src="assets/js/custom.js"></script>
+   
 </body>
 
 </html>
