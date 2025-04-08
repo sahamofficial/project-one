@@ -189,6 +189,7 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
     <!-- /products Section -->
 
     <!-- Testimonials Section -->
+    <!-- A testimonial is a statement from a past customer that describes how a product or service helped them -->
     <section id="testimonials" class="testimonials section light-background">
 
       <!-- Section Title -->
