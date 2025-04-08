@@ -48,7 +48,9 @@ if(strlen($_SESSION['alogin'])==0) {
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            Products Listing
+                            <span>Products Listing</span>
+                            <a href="add-product.php?id=<?php echo htmlentities($result->id); ?>">
+                                    <button class="btn btn-primary"><i class="fa fa-edit "></i>Add</button>
                         </div>
                         <div class="panel-body">
                             <div class="table-responsive">
