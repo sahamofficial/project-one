@@ -75,8 +75,9 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <Span>Categories Listing</Span>
-                                <a href="add-category.php?catid=<?php echo htmlentities($result->id); ?>">
-                                    <button class="btn btn-primary"><i class="fa fa-edit "></i>Add</button></a>
+                                <a href="add-category.php">
+                                    <button class="btn btn-primary"><i class="fa fa-plus"></i> Add +</button>
+                                </a>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -130,13 +131,10 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <!--End Advanced Tables -->
                     </div>
                 </div>
-
-
-
             </div>
         </div>
 
-        <script>// auto close alert messages
+        <script>
             setTimeout(function () {
                 document.querySelectorAll('.alert').forEach(function (alert) {
                     alert.classList.remove('show');
