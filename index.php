@@ -1,13 +1,11 @@
 <?php
-include('includes/config.php'); // Include your database connection
+include('config.php');
 
-// Fetch categories
 $sql = "SELECT * FROM categories";
 $query = $dbh->prepare($sql);
 $query->execute();
 $categories = $query->fetchAll(PDO::FETCH_OBJ);
 
-// Fetch products
 $sql = "SELECT products.*, categories.name AS category_name FROM products 
         LEFT JOIN categories ON products.catid = categories.id";
 $query = $dbh->prepare($sql);
@@ -22,28 +20,24 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>The Blossoming Buds</title>
+  <title>New Royal Flowers</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <!-- Favicons -->
   <link href="assets/img/Icon.png" rel="icon">
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Questrial:wght@400&display=swap"
     rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
 </head>
@@ -67,7 +61,7 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
                 class="nav-text">Services</span></a></li>
           <li><a href="#contact"><i class="bi bi-person-rolodex navicon"></i><span class="nav-text">Contact</span></a>
           </li>
-          <li><a href="adminlogin.php"><i class="bi bi-person-lines-fill navicon"></i><span
+          <li><a href="admin/auth/login.php"><i class="bi bi-person-lines-fill navicon"></i><span
                 class="nav-text">Admin</span></a></li>
         </ul>
       </nav>
@@ -143,7 +137,7 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
           <!-- Products Filters -->
           <div class="products-filters-container" data-aos="fade-up" data-aos-delay="200">
             <ul class="products-filters isotope-filters">
-              <li data-filter="*" class="filter-active">All Work</li>
+              <li data-filter="*" class="filter-active">All Products</li>
               <?php foreach ($categories as $category): ?>
                 <li data-filter=".filter-<?php echo strtolower(str_replace(' ', '-', $category->name)); ?>">
                   <?php echo htmlentities($category->name); ?>

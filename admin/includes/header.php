@@ -1,12 +1,19 @@
+<!-- <?= url('') ?> -->
+
+<?php
+require_once __DIR__ . '/../../config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+    <link href="<?= url('assets\img\Icon.png') ?>" rel="icon">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Royal Flower | Admin Dash Board</title>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="<?= url('assets\vendor\bootstrap\css\bootstrap.min.css') ?>" rel="stylesheet" />
+    <link href="<?= url('assets\css\admin.css') ?>" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
 </head>
 
@@ -23,7 +30,7 @@
             <nav id="navmenu" class="navmenu">
                 <ul class="d-flex flex-row">
                     <li>
-                        <a href="dashboard.php" class="active">
+                        <a href="<?= url('admin\dashboard.php') ?>" class="active">
                             <i class="bi bi-house navicon"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
@@ -35,13 +42,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="manage-categories.php" class="active">
+                        <a href="<?= url('admin\categories\manage-categories.php') ?>" class="active">
                             <i class="bi bi-house navicon"></i>
                             <span class="nav-text">Categories</span>
                         </a>
                     </li>
                     <li>
-                        <a href="manage-products.php">
+                        <a href="<?= url('admin\products\manage-products.php') ?>">
                             <i class="bi bi-cart4 navicon"></i>
                             <span class="nav-text">Products</span>
                         </a>
@@ -53,58 +60,17 @@
                         </a>
                     </li>
                     <div class="right-div">
-                        <a href="logout.php" class="btn btn-danger pull-right">LOG ME OUT</a>
+                        <a href="<?= url('admin\logout.php') ?>" class="btn btn-danger pull-right">Logout</a>
                     </div>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- LOGO HEADER END-->
-    <section class="menu-section">
-        <div class="container">
-            <div class="row ">
-                <div class="col-md-12">
-                    <div class="navbar-collapse collapse ">
-                        <ul id="menu-top" class="nav navbar-nav navbar-right">
-                            <li><a href="dashboard.php" class="menu-top-active">DASHBOARD</a></li>
-
-                            <li>
-                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Categories
-                                    <i class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add-category.php">Add
-                                            Category</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1"
-                                            href="manage-categories.php">Manage Categories</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#" class="dropdown-toggle" id="ddlmenuItem" data-toggle="dropdown"> Products <i
-                                        class="fa fa-angle-down"></i></a>
-                                <ul class="dropdown-menu" role="menu" aria-labelledby="ddlmenuItem">
-                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="add-product.php">Add
-                                            Product</a></li>
-                                    <li role="presentation"><a role="menuitem" tabindex="-1"
-                                            href="manage-products.php">Manage
-                                            Products</a></li>
-                                </ul>
-                            </li>
-
-                            <li><a href="change-password.php">Change Password</a></li>
-                            <li><a href="change-username.php">Change Username</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="assets/js/sweetalert.js"></script>
+    <script src="<?= url('assets/vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
+    <script src="<?= url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') ?>"></script>
+    <script src="<?= url('assets/js/admin.js') ?>"></script>
+    <script src="<?= url('assets/js/sweetalert.js') ?>"></script>
 
 </body>
 

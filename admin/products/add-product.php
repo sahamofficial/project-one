@@ -1,10 +1,10 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
+require_once __DIR__ . '/../../config.php';
 
 if (strlen($_SESSION['alogin']) == 0) {
-    header('location:../adminlogin.php');
+    header('location:../auth/login.php');
 } else {
 
     if (isset($_POST['add'])) {
@@ -20,7 +20,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         if (!in_array($extension, $allowed_extensions)) {
             echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
         } else {
-            move_uploaded_file($_FILES["productpic"]["tmp_name"], "productImg/" . $imgnewname);
+            move_uploaded_file($_FILES["productpic"]["tmp_name"], "../productImg/" . $imgnewname);
             $sql = "INSERT INTO products (name, catid, price, image) VALUES (:name, :category, :price, :imgnewname)";
             $query = $dbh->prepare($sql);
             $query->bindParam(':name', $name, PDO::PARAM_STR);
@@ -28,34 +28,25 @@ if (strlen($_SESSION['alogin']) == 0) {
             $query->bindParam(':price', $price, PDO::PARAM_STR);
             $query->bindParam(':imgnewname', $imgnewname, PDO::PARAM_STR);
             $query->execute();
-
             $lastInsertId = $dbh->lastInsertId();
+
             if ($lastInsertId) {
-                echo "<script>alert('Product Listed successfully');</script>";
-                echo "<script>window.location.href='manage-products.php'</script>";
+                $_SESSION['msg'] = "Products Listed successfully";
+                header('location:manage-products.php');
             } else {
-                echo "<script>alert('Something went wrong. Please try again');</script>";
-                echo "<script>window.location.href='manage-products.php'</script>";
+                $_SESSION['error'] = "Something went wrong. Please try again";
+                header('location:manage-products.php');
             }
         }
     }
     ?>
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Online Shop | Add Product</title>
-        <link href="assets/css/bootstrap.css" rel="stylesheet" />
-        <link href="assets/css/font-awesome.css" rel="stylesheet" />
-        <link href="assets/css/style.css" rel="stylesheet" />
+        <title>New Royal Flowers | Add Product</title>
     </head>
 
     <body>
-        <?php include('includes/header.php'); ?>
+        <?php include(__DIR__ . '/../includes/header.php'); ?>
 
         <div class="content-wrapper">
             <div class="container">
@@ -128,11 +119,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
             </div>
         </div>
-
-        <?php include('includes/footer.php'); ?>
-        <script src="assets/js/jquery-1.10.2.js"></script>
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/custom.js"></script>
+        <?php include(__DIR__ . '/../includes/footer.php'); ?>
     </body>
 
     </html>

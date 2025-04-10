@@ -1,9 +1,9 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
+require_once __DIR__ . '/../../config.php';
 if (strlen($_SESSION['alogin']) == 0) {
-    header('location:../adminlogin.php');
+    header('location:../auth/login.php');
 } else {
     if (isset($_GET['del'])) {
         $id = $_GET['del'];
@@ -18,21 +18,14 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
     ?>
-    <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml">
 
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>New Royal Flowers | Manage Categories</title>
-
     </head>
 
     <body>
 
-        <?php include('includes/header.php'); ?>
+        <?php include(__DIR__ . '/../includes/header.php'); ?>
 
         <div class="content-wrapper">
             <div class="container">
@@ -108,14 +101,15 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                                                         <td class="center">
 
-                                                            <a
-                                                                href="edit-category.php?catid=<?php echo htmlentities($result->id); ?>"><button
-                                                                    class="btn btn-primary"><i class="fa fa-edit "></i>
-                                                                    Edit</button>
-                                                                <a href="javascript:void(0);" class="btn btn-danger delete-btn"
-                                                                    data-id="<?php echo htmlentities($result->id); ?>">
-                                                                    <i class="fa fa-trash"></i> Delete
-                                                                </a>
+                                                            <a href="edit-category.php?catid=<?php echo htmlentities($result->id ?? 0); ?>"
+                                                                class="btn btn-primary">
+                                                                <i class="fa fa-edit"></i> Edit
+                                                            </a>
+                                                            <a href="javascript:void(0);" class="btn btn-danger delete-btn"
+                                                                data-id="<?php echo htmlentities($result->id ?? 0); ?>"
+                                                                data-name="<?php echo htmlentities($result->name ?? ''); ?>">
+                                                                <i class="fa fa-trash"></i> Delete
+                                                            </a>
 
                                                         </td>
                                                     </tr>
@@ -143,7 +137,8 @@ if (strlen($_SESSION['alogin']) == 0) {
             }, 3000);
         </script>
 
-        <?php include('includes/footer.php'); ?>
+        <?php include(__DIR__ . '/../includes/footer.php'); ?>
+
     </body>
 
     </html>

@@ -1,37 +1,25 @@
 <?php
 session_start();
 error_reporting(0);
-include('includes/config.php');
+include('../config.php');
 if (strlen($_SESSION['alogin']) == 0) {
-  header('location:../adminlogin.php');
+  header('location:auth/login.php');
 } else { ?>
-  <!DOCTYPE html>
-  <html xmlns="http://www.w3.org/1999/xhtml">
 
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-
-  </head>
 
   <body>
-
-  <?php include('includes/header.php'); ?>
+    <?php include(__DIR__ . '/includes/header.php'); ?>
 
     <div class="content-wrapper">
       <div class="container">
         <div class="row pad-botm">
           <div class="col-md-12">
             <h4 class="header-line">ADMIN DASHBOARD</h4>
-
           </div>
-
         </div>
 
         <div class="row">
-          <a href="manage-categories.php">
+          <a href="categories/manage-categories.php">
             <div class="col-md-3 col-sm-3 col-xs-6">
               <div class="alert alert-success back-widget-set text-center">
                 <i class="fa fa-book fa-5x"></i>
@@ -48,30 +36,27 @@ if (strlen($_SESSION['alogin']) == 0) {
             </div>
           </a>
 
-          <div class="row">
-            <a href="manage-categories.php">
-              <div class="col-md-3 col-sm-3 rscol-xs-6">
-                <div class="alert alert-info back-widget-set text-center">
-                  <i class="fa fa-file-archive-o fa-5x"></i>
-                  <?php
-                  $sql5 = "SELECT id from products ";
-                  $query5 = $dbh->prepare($sql5);
-                  $query5->execute();
-                  $results5 = $query5->fetchAll(PDO::FETCH_OBJ);
-                  $listdcats = $query5->rowCount();
-                  ?>
-
-                  <h3><?php echo htmlentities($listdcats); ?> </h3>
-                  Products Listed
-                </div>
+          <a href="manage-products.php">
+            <div class="col-md-3 col-sm-3 rscol-xs-6">
+              <div class="alert alert-info back-widget-set text-center">
+                <i class="fa fa-file-archive-o fa-5x"></i>
+                <?php
+                $sql5 = "SELECT id from products ";
+                $query5 = $dbh->prepare($sql5);
+                $query5->execute();
+                $results5 = $query5->fetchAll(PDO::FETCH_OBJ);
+                $listdcats = $query5->rowCount();
+                ?>
+                <h3><?php echo htmlentities($listdcats); ?> </h3>
+                Products Listed
               </div>
-            </a>
-          </div>
-
+            </div>
+          </a>
         </div>
       </div>
+    </div>
 
-      <?php include('includes/footer.php'); ?>
+    <?php include(__DIR__ . '/includes/footer.php'); ?>
   </body>
 
   </html>
