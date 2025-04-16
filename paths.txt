@@ -1,0 +1,21 @@
+project-one/ 
+├── assets/ 
+│   └── js/
+│   	└── main.js
+│   	└── admin.js
+│   	└── sweetalert.js
+│   └── includes/ 
+│       └── vendor/
+│   	    └── bootstrap/ 
+│   	    	└── js/
+│   	    	   └── bootstrap.min.js
+│   	    	   └── bootstrap.bundle.min.js
+├── admin/ 
+│   └── includes/ 
+│       ├── header.php
+│       └── footer.php
+│   └── productImg/
+│   └── products/
+│   	└── manage-products.php
+│   	└── add-products.php
+│   	└── edit-products.php

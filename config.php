@@ -1,7 +1,10 @@
 <?php
-
 if (!defined('BASE_PATH')) {
     define('BASE_PATH', dirname(__DIR__));
+}
+
+if (!defined('BASE_URL')) {
+    define('BASE_URL', '/project-one');
 }
 
 if (!defined('ADMIN_PATH')) {

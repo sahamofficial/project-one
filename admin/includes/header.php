@@ -1,5 +1,3 @@
-<!-- <?= url('') ?> -->
-
 <?php
 require_once __DIR__ . '/../../config.php';
 ?>
@@ -36,7 +34,7 @@ require_once __DIR__ . '/../../config.php';
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="active">
+                        <a href="<?= url('admin\orders\manage-orders.php') ?>" class="active">
                             <i class="bi bi-house navicon"></i>
                             <span class="nav-text">Orders</span>
                         </a>
@@ -53,14 +51,27 @@ require_once __DIR__ . '/../../config.php';
                             <span class="nav-text">Products</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#">
+                    <li class="dropdown" tabindex="-1">
+                        <a href="#" class="dropdown-toggle">
                             <i class="bi bi-person-lines-fill navicon"></i>
-                            <span class="nav-text">Me</span>
+                            <span class="nav-text">Me <i class="bi bi-chevron-down"></i></span>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?= url('admin/auth/change-username.php') ?>" class="dropdown-item">
+                                    <i class="bi bi-person-circle"></i> Change Username
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<?= url('admin/auth/change-password.php') ?>" class="dropdown-item">
+                                    <i class="bi bi-lock"></i> Change Password
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+
                     <div class="right-div">
-                        <a href="<?= url('admin\logout.php') ?>" class="btn btn-danger pull-right">Logout</a>
+                        <a href="<?= url('admin\auth\logout.php') ?>" class="btn btn-danger pull-right">Logout</a>
                     </div>
                 </ul>
             </nav>

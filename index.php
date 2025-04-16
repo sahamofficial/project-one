@@ -6,11 +6,16 @@ $query = $dbh->prepare($sql);
 $query->execute();
 $categories = $query->fetchAll(PDO::FETCH_OBJ);
 
-$sql = "SELECT products.*, categories.name AS category_name FROM products 
-        LEFT JOIN categories ON products.catid = categories.id";
+$sql = "SELECT 
+          p.*, 
+          c.name AS category_name,
+          (SELECT COUNT(*) FROM product_likes WHERE product_id = p.id) AS like_count
+        FROM products p
+        LEFT JOIN categories c ON p.catid = c.id";
 $query = $dbh->prepare($sql);
 $query->execute();
 $products = $query->fetchAll(PDO::FETCH_OBJ);
+
 ?>
 
 
@@ -63,6 +68,8 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
           </li>
           <li><a href="admin/auth/login.php"><i class="bi bi-person-lines-fill navicon"></i><span
                 class="nav-text">Admin</span></a></li>
+          <li><a href="user/auth/profile.php"><i class="bi bi-person-lines-fill navicon"></i><span class="nav-text">My
+                Profile</span></a></li>
         </ul>
       </nav>
     </div>
@@ -128,7 +135,7 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
         </div>
         <p>Discover a world of everlasting beauty with our artfully designed collection. Each piece is lovingly crafted
           to add a touch of floral charm to your everyday style and special moments—all at affordable prices.</p>
-      </div><!-- End Section Title -->
+      </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -149,38 +156,67 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
           <!-- Products Listing -->
           <div class="row g-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
             <?php foreach ($products as $product): ?>
+              <?php
+              $countStmt = $dbh->prepare("SELECT COUNT(*) FROM product_likes WHERE product_id = ?");
+              $countStmt->execute([$product->id]);
+              $likeCount = $countStmt->fetchColumn();
+
+              $userLiked = false;
+              if (isset($_SESSION['user_id'])) {
+                $checkLiked = $dbh->prepare("SELECT 1 FROM product_likes WHERE user_id = ? AND product_id = ?");
+                $checkLiked->execute([$_SESSION['user_id'], $product->id]);
+                $userLiked = $checkLiked->fetch();
+              }
+              ?>
               <div
                 class="col-lg-6 col-md-6 products-item isotope-item filter-<?php echo strtolower(str_replace(' ', '-', $product->category_name)); ?>">
                 <div class="products-card">
-                  <div class="products-image">
-                    <img src="admin/productImg/<?php echo htmlentities($product->image); ?>" class="img-fluid" alt=""
-                      loading="lazy">
+                  <div class="products-image position-relative">
+                    <img src="admin/productImg/<?php echo htmlentities($product->image ?? 'default.png'); ?>"
+                      class="img-fluid" alt="<?php echo htmlentities($product->name); ?>" loading="lazy"
+                      onerror="this.src='admin/productImg/default.png';">
+
                     <div class="products-overlay">
-                      <div class="products-actions">
-                        <a href="admin/productImg/<?php echo htmlentities($product->image); ?>" class="glightbox preview-link"
-                          data-gallery="products-gallery-<?php echo strtolower(str_replace(' ', '-', $product->category_name)); ?>"><i
-                            class="bi bi-eye"></i></a>
-                        <a href="products-details.php?pid=<?php echo htmlentities($product->id); ?>"
-                          class="details-link"><i class="bi bi-arrow-right"></i></a>
+                      <div class="products-actions d-flex justify-content-between align-items-center">
+                        <a href="admin/productImg/<?php echo htmlentities($product->image); ?>"
+                          class="glightbox preview-link">
+                          <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="products-details.php?pid=<?php echo htmlentities($product->id); ?>" class="details-link">
+                          <i class="bi bi-arrow-right"></i>
+                        </a>
                       </div>
                     </div>
                   </div>
+
                   <div class="products-content">
                     <span class="category"><?php echo htmlentities($product->category_name); ?></span>
-                    <h3><?php echo htmlentities($product->name ?? ''); ?></h3>
-                    <p><?php echo htmlentities($product->description ?? ''); ?></p>
+                    <h3><?php echo htmlentities($product->name); ?></h3>
+                    <p><?php echo htmlentities(mb_strimwidth($product->description ?? '', 0, 100, '...')); ?></p>
+
+                    <!-- Like Button -->
+                    <button type="button"
+                      class="btn btn-sm like-btn mt-2 <?= $userLiked ? 'btn-danger' : 'btn-outline-danger' ?>"
+                      data-id="<?= $product->id ?>" data-liked="<?= $userLiked ? '1' : '0' ?>">
+                      <i class="bi <?= $userLiked ? 'bi-heart-fill text-danger' : 'bi-heart' ?>"></i>
+                      <span class="like-count"><?= htmlentities($likeCount) ?></span>
+                    </button>
                   </div>
                 </div>
-              </div><!-- End products Item -->
+              </div>
             <?php endforeach; ?>
-          </div><!-- End products Container -->
+          </div>
+
+
+          <!-- End products Container -->
 
         </div>
 
       </div>
 
     </section>
-    <!-- /products Section -->
+
+    <!-- end products Section -->
 
     <!-- Testimonials Section -->
     <!-- A testimonial is a statement from a past customer that describes how a product or service helped them -->
