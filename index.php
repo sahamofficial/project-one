@@ -146,22 +146,20 @@ try {
                   <h3><?php echo htmlentities($product->name); ?></h3>
                   <p><?php echo htmlentities(mb_strimwidth($product->description ?? '', 0, 100, '...')); ?></p>
 
-                  <!-- Like & Add to Cart Buttons -->
                   <div class="d-flex gap-2">
-                    <button type="button"
-                      class="btn btn-sm like-btn <?= $userLiked ? 'btn-danger' : 'btn-outline-danger' ?>"
-                      data-id="<?= $product->id ?>" data-liked="<?= $userLiked ? '1' : '0' ?>">
-                      <i class="bi <?= $userLiked ? 'bi-heart-fill text-danger' : 'bi-heart' ?>"></i>
-                      <span class="like-count"><?= htmlentities($likeCount) ?></span>
+                    <button type="button" class="like-btn" data-id="<?= $product->id ?>"
+                      data-liked="<?= $userLiked ? '1' : '0' ?>">
+                      <i class="<?= $userLiked ? 'bi bi-heart-fill liked' : 'bi bi-heart' ?>"></i>
+                      <span class="like-count"><?= htmlentities($product->like_count) ?></span>
                     </button>
 
-                    <!-- Add to Cart Button -->
                     <form method="post" action="user/cart/add-to-cart.php" class="d-inline add-to-cart-form">
                       <input type="hidden" name="product_id" value="<?= $product->id ?>">
                       <button type="submit" class="btn btn-sm btn-primary mt-2 add-to-cart-btn">
                         <i class="bi bi-cart-plus"></i> Add to Cart
                       </button>
                     </form>
+                    <div class="cart-feedback mt-1" style="font-size: 0.875rem;"></div>
 
                   </div>
                 </div>

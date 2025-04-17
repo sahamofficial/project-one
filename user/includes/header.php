@@ -39,7 +39,7 @@ require_once __DIR__ . '/../../config.php';
     <div
       class="header-container container-fluid container-xl position-relative d-flex flex-column flex-md-row align-items-center justify-content-between">
       <a href="index.html" class="logo d-flex flex-column flex-md-row align-items-center me-auto me-xl-0">
-        <img src="assets/img/Icon.png" alt="">
+        <img src="<?= url('assets\img\Icon.png') ?>" alt="">
         <h1 class="sitename">New Royal Flowers</h1>
       </a>
 
@@ -48,13 +48,13 @@ require_once __DIR__ . '/../../config.php';
           <li><a href="<?= url('index.php') ?>" class="active"><i class="bi bi-house navicon"></i><span
                 class="nav-text">Home</span></a>
           </li>
-          <li><a href="#products"><i class="bi bi-cart4 navicon"></i><span class="nav-text">Products</span></a></li>
+          <li><a href="#products"><i class="bi bi-shop-window navicon"></i><span class="nav-text">Products</span></a></li>
           <li><a href="#services"><i class="bi bi-file-earmark-text navicon"></i><span
                 class="nav-text">Services</span></a></li>
           <li><a href="#contact"><i class="bi bi-person-rolodex navicon"></i><span class="nav-text">Contact</span></a>
           </li>
-          <li><a href="admin/auth/login.php"><i class="bi bi-person-lines-fill navicon"></i><span
-                class="nav-text">Admin</span></a></li>
+          <li><a href="user/cart/cart.php"><i class="bi bi-cart4 navicon"></i><span
+                class="nav-text">Cart</span></a></li>
           <li><a href="user/auth/profile.php"><i class="bi bi-person-lines-fill navicon"></i><span class="nav-text">My
                 Profile</span></a></li>
         </ul>

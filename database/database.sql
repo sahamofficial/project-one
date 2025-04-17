@@ -24,12 +24,6 @@ CREATE TABLE categories (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
--- add categories
-INSERT INTO categories (name, description)
-VALUES (
-        'keychains',
-        'A diverse and functional collection of key chains, designed to keep your keys organized while adding a touch of personality to your daily carry.'
-    );
 --products table
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,14 +37,6 @@ CREATE TABLE products (
     FOREIGN KEY (catid) REFERENCES categories(id) ON DELETE
     SET NULL ON UPDATE CASCADE
 );
---add products
-INSERT INTO categories (name, description, catid, price)
-VALUES (
-        'keychain',
-        'A diverse and functional collection of key chains.',
-        1,
-        150.00
-    );
 -- product_likes table
 CREATE TABLE product_likes (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,21 +53,34 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+-- cart table
+CREATE TABLE cart_items (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  product_id INT NOT NULL,
+  quantity INT DEFAULT 1,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id),
+  FOREIGN KEY (product_id) REFERENCES products(id)
+);
 -- orders table
 CREATE TABLE orders (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
-  status ENUM('Pending', 'Shipped', 'Delivered') DEFAULT 'Pending',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  total_amount DECIMAL(10, 2) NOT NULL,
+  status VARCHAR(50) DEFAULT 'pending',
+  customer_name VARCHAR(100),
+  customer_email VARCHAR(100),
+  customer_phone VARCHAR(20),
+  shipping_address TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 -- order items table
 CREATE TABLE order_items (
   id INT AUTO_INCREMENT PRIMARY KEY,
   order_id INT NOT NULL,
   product_id INT NOT NULL,
-  quantity INT DEFAULT 1,
-  FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
-  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+  quantity INT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL
 );
-

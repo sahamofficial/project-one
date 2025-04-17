@@ -88,6 +88,7 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
                                                     <i class="bi bi-cart-plus"></i> Add to Cart
                                                 </button>
                                             </form>
+                                            <div class="cart-feedback mt-1" style="font-size: 0.875rem;"></div>
                                         </div>
                                     </div>
                                 </div>

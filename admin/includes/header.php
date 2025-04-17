@@ -1,6 +1,17 @@
 <?php
-require_once __DIR__ . '/../../config.php';
+include __DIR__ . '/../../config.php';
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['alogin']) || $_SESSION['alogin'] == '') {
+    header('Location: ../auth/login.php');
+    exit;
+}
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,7 +32,7 @@ require_once __DIR__ . '/../../config.php';
         <div
             class="header-container container-fluid container-xl position-relative d-flex flex-column flex-md-row align-items-center justify-content-between">
             <a href="#" class="logo d-flex flex-column flex-md-row align-items-center me-auto me-xl-0">
-                <img src="assets/img/Icon.png" alt="">
+                <img src="<?= url('assets\img\Icon.png') ?>" alt="">
                 <h1 class="sitename">New Royal Flowers</h1>
             </a>
 

@@ -29,6 +29,9 @@ project-one/
 │       ├── profile.php
 │       └── signup.php
 │   └── products/ 
-│       ├── all-products.php
-│       └── cart.php
 │       └── like-product.php
+│   └── cart/ 
+│       ├── cart.php
+│       └── add-to-cart.php
+│       └── remove-from-cart.php
+│       └── update-cart.php

@@ -234,8 +234,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => {
           if (data.status === 'success') {
             likeIcon.className = data.liked ? 'bi bi-heart-fill text-danger' : 'bi bi-heart';
-            this.classList.toggle('btn-danger', data.liked);
-            this.classList.toggle('btn-outline-danger', !data.liked);
+
+            this.classList.remove('btn-danger', 'btn-outline-danger');
+
             likeCountSpan.textContent = data.likeCount;
           } else if (data.status === 'redirect') {
             window.location.href = data.url;
@@ -243,8 +244,67 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(data.message || 'Something went wrong');
           }
         })
+
         .catch(err => {
           console.error('Fetch error:', err);
+        });
+    });
+  });
+});
+// add-to-cart functionality
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.add-to-cart-form').forEach(form => {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const submitButton = this.querySelector('.add-to-cart-btn');
+      const feedbackDiv = this.nextElementSibling;
+
+      submitButton.disabled = true;
+      submitButton.innerHTML = 'Adding...';
+
+      fetch(this.action, {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => response.json())
+        .then(data => {
+          submitButton.disabled = false;
+
+          if (data.status === 'redirect') {
+            window.location.href = data.url;
+            return;
+          }
+
+          if (data.status === 'success') {
+            submitButton.innerHTML = '<i class="bi bi-cart-plus"></i> Added to Cart';
+
+            if (feedbackDiv) {
+              feedbackDiv.textContent = data.message;
+              feedbackDiv.style.color = 'green';
+            }
+
+            const cartCountEl = document.querySelector('#cart-count');
+            if (cartCountEl) {
+              cartCountEl.textContent = data.cartCount;
+            }
+          } else {
+            submitButton.innerHTML = '<i class="bi bi-cart-plus"></i> Add to Cart';
+            if (feedbackDiv) {
+              feedbackDiv.textContent = data.message || 'Something went wrong.';
+              feedbackDiv.style.color = 'red';
+            }
+          }
+        })
+        .catch(err => {
+          console.error('Error:', err);
+          submitButton.disabled = false;
+          submitButton.innerHTML = '<i class="bi bi-cart-plus"></i> Add to Cart';
+          if (feedbackDiv) {
+            feedbackDiv.textContent = 'An error occurred. Please try again.';
+            feedbackDiv.style.color = 'red';
+          }
         });
     });
   });

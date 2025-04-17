@@ -1,51 +1,74 @@
 <?php
-session_start();
-require_once __DIR__ . '/../../config.php';
+require_once '../includes/header.php';
 
-// Get filters
-$contact = $_GET['contact_no'] ?? '';
-$start = $_GET['start_date'] ?? '';
-$end = $_GET['end_date'] ?? '';
-
-// Base SQL
-$sql = "
-  SELECT o.id AS order_id, o.created_at, o.status, u.name AS user_name, u.contact_no, p.name AS product_name, p.price
-  FROM orders o
-  JOIN users u ON o.user_id = u.id
-  JOIN order_items oi ON o.id = oi.order_id
-  JOIN products p ON oi.product_id = p.id
-  WHERE 1=1
-";
-
-// Conditions
-$params = [];
-if ($contact) {
-  $sql .= " AND u.contact_no LIKE ?";
-  $params[] = "%$contact%";
-}
-if ($start) {
-  $sql .= " AND DATE(o.created_at) >= ?";
-  $params[] = $start;
-}
-if ($end) {
-  $sql .= " AND DATE(o.created_at) <= ?";
-  $params[] = $end;
-}
-
-$sql .= " ORDER BY o.created_at DESC";
-
-$stmt = $dbh->prepare($sql);
-$stmt->execute($params);
-$orders = $stmt->fetchAll(PDO::FETCH_GROUP);
+$orderStmt = $dbh->prepare("SELECT * FROM orders ORDER BY created_at DESC");
+$orderStmt->execute();
+$orders = $orderStmt->fetchAll();
 ?>
 
-<?php include(__DIR__ . '/../includes/header.php'); ?>
+<!-- SweetAlert2 CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<h2>Manage Orders</h2>
+<div class="container mt-5">
+  <h3>Manage Orders</h3>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>User</th>
+        <th>Total</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach ($orders as $order): ?>
+        <tr>
+          <td><?= $order['id'] ?></td>
+          <td><?= htmlspecialchars($order['customer_name']) ?></td>
+          <td>$<?= number_format($order['total_amount'], 2) ?></td>
+          <td>
+            <form method="post" action="update-order-status.php" class="d-inline">
+              <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
+              <select name="status" onchange="this.form.submit()">
+                <option value="pending" <?= $order['status'] == 'pending' ? 'selected' : '' ?>>Pending</option>
+                <option value="shipped" <?= $order['status'] == 'shipped' ? 'selected' : '' ?>>Shipped</option>
+                <option value="delivered" <?= $order['status'] == 'delivered' ? 'selected' : '' ?>>Delivered</option>
+              </select>
+            </form>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $order['id'] ?>)">Delete</button>
+          </td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
 
-<form method="GET" style="margin-bottom: 1em;">
-  <input type="text" name="contact_no" placeholder="Contact No" value="<?= htmlentities($contact) ?>">
-  <input type="date" name="start_date" value="<?= htmlentities($start) ?>">
-  <input type="date" name="end_date" value="<?= htmlentities($end) ?>">
-  <button type="submit">Filter</button>
-</form>
+  <!-- Hidden form for deletion -->
+  <form id="deleteForm" method="post" action="delete-order.php" style="display: none;">
+    <input type="hidden" name="order_id" id="deleteOrderId">
+  </form>
+</div>
+
+<script>
+function confirmDelete(orderId) {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "This will permanently delete the order.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById('deleteOrderId').value = orderId;
+      document.getElementById('deleteForm').submit();
+    }
+  });
+}
+</script>
+
+<?php require_once '../includes/footer.php'; ?>
