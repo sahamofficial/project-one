@@ -1,10 +1,11 @@
 project-one/ 
+├── index.php 
+├── config.php 
 ├── assets/ 
 │   └── js/
 │   	└── main.js
 │   	└── admin.js
 │   	└── sweetalert.js
-│   └── includes/ 
 │       └── vendor/
 │   	    └── bootstrap/ 
 │   	    	└── js/
@@ -19,3 +20,15 @@ project-one/
 │   	└── manage-products.php
 │   	└── add-products.php
 │   	└── edit-products.php
+├── user/ 
+│   └── includes/ 
+│       ├── header.php
+│       └── footer.php
+│       └── products-header.php
+│   └── auth/ 
+│       ├── profile.php
+│       └── signup.php
+│   └── products/ 
+│       ├── all-products.php
+│       └── cart.php
+│       └── like-product.php

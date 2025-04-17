@@ -55,7 +55,7 @@ if (strlen($_SESSION['alogin']) == 0) {
         </a>
 
         <!-- Products Summary -->
-        <a href="manage-products.php" class="col-md-3 col-sm-3 col-xs-6">
+        <a href="products/manage-products.php" class="col-md-3 col-sm-3 col-xs-6">
           <div class="alert alert-info back-widget-set text-center">
             <i class="fa fa-file-archive fa-5x"></i>
             <?php

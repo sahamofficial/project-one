@@ -7,7 +7,7 @@ header('Content-Type: application/json');
 if (!isset($_SESSION['user_id'])) {
   echo json_encode([
     'status' => 'redirect',
-    'url' => BASE_URL . 'user/auth/login.php'
+    'url' => BASE_URL . '/user/auth/login.php'
   ]);
   exit;
 }

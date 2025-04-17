@@ -1,10 +1,4 @@
-/**
-* Template Name: EasyFolio
-* Template URL: https://bootstrapmade.com/easyfolio-bootstrap-portfolio-template/
-* Updated: Feb 21 2025 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 (function () {
   "use strict";
@@ -228,11 +222,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const likeIcon = this.querySelector('i');
       const likeCountSpan = this.querySelector('.like-count');
 
-      fetch('user/products/like-product.php', {
+      fetch(`${BASE_URL}/user/products/like-product.php`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
         body: 'product_id=' + encodeURIComponent(productId)
       })
+
         .then(res => res.json())
         .then(data => {
           if (data.status === 'success') {
