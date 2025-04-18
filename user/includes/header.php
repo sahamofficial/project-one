@@ -48,13 +48,11 @@ require_once __DIR__ . '/../../config.php';
           <li><a href="<?= url('index.php') ?>" class="active"><i class="bi bi-house navicon"></i><span
                 class="nav-text">Home</span></a>
           </li>
-          <li><a href="#products"><i class="bi bi-shop-window navicon"></i><span class="nav-text">Products</span></a></li>
+          <li><a href="<?= url('all-products.php') ?>"><i class="bi bi-shop-window navicon"></i><span class="nav-text">Products</span></a></li>
           <li><a href="#services"><i class="bi bi-file-earmark-text navicon"></i><span
                 class="nav-text">Services</span></a></li>
           <li><a href="#contact"><i class="bi bi-person-rolodex navicon"></i><span class="nav-text">Contact</span></a>
           </li>
-          <li><a href="user/cart/cart.php"><i class="bi bi-cart4 navicon"></i><span
-                class="nav-text">Cart</span></a></li>
           <li><a href="user/auth/profile.php"><i class="bi bi-person-lines-fill navicon"></i><span class="nav-text">My
                 Profile</span></a></li>
         </ul>

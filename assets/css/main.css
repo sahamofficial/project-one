@@ -1827,8 +1827,68 @@ section,
 }
 
 /*--------------------------------------------------------------
-# Starter Section Section
+# Profile Page
 --------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #f9f9f9;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.profile-container h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.profile-container p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+.profile-actions a {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.profile-actions a:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 480px) {
+  .profile-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .profile-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-container p {
+    font-size: 1rem;
+  }
+
+  .profile-actions a {
+    flex: 1 1 100%;
+    text-align: center;
+  }
 }

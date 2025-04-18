@@ -16,11 +16,7 @@ $products = $query->fetchAll(PDO::FETCH_OBJ);
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <!-- your <head> content should be in products-header.php -->
-</head>
-
+    
 <body>
 
     <main class="main">

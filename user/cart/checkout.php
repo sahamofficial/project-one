@@ -18,7 +18,7 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
         number, or shipping address is incorrect, your order may be delayed or lost.
     </div>
 
-    <form action="place-order.php" method="post">
+    <form action="../orders/place-order.php" method="post">
         <div class="row">
             <div class="col-md-6">
                 <h5>Shipping Details</h5>
