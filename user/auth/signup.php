@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
   try {
-    // Check if contact_no already exists
     $checkStmt = $dbh->prepare("SELECT id FROM users WHERE contact_no = :contact_no");
     $checkStmt->bindParam(':contact_no', $contact_no);
     $checkStmt->execute();
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       exit;
     }
 
-    // Insert new user
     $stmt = $dbh->prepare("INSERT INTO users (name, contact_no, password) VALUES (:name, :contact_no, :password)");
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':contact_no', $contact_no);
@@ -44,14 +42,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 ?>
+<?php include(__DIR__ . '/../includes/header.php'); ?>
 
-<!-- HTML Signup Form -->
-<?php if (isset($_SESSION['error'])): ?>
-  <div style="color: red;"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-<?php endif; ?>
-<form method="POST">
-  <input type="text" name="name" placeholder="Name" required><br>
-  <input type="text" name="contact_no" placeholder="Contact Number" required><br>
-  <input type="password" name="password" placeholder="Password" required><br>
-  <button type="submit">Sign Up</button>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <h2>Create Account</h2>
+
+    <?php if (isset($_SESSION['error'])): ?>
+      <div class="error-message"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+    <?php endif; ?>
+
+    <form method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="text" name="contact_no" placeholder="Contact Number" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+</body>
+</html>

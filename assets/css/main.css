@@ -489,54 +489,6 @@ h6 {
 }
 
 /*--------------------------------------------------------------
-
- .header .header-toggle {
-    color: var(--contrast-color);
-    background-color: var(--accent-color);
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    position: fixed;
-    top: 15px;
-    right: 15px;
-    z-index: 9999;
-    transition: background-color 0.3s;
-  }
-  
-  .header .header-toggle:hover {
-    color: var(--contrast-color);
-    background-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .mobile-nav-toggle {
-    display: none;
-  }
-  
-  @media (min-width: 1200px) {
-    .header ~ #footer,
-    .header ~ main {
-      margin-left: 300px;
-    }
-  }
-  
-  @media (max-width: 1199px) {
-    .header {
-      left: -100%;
-    }
-  }
-  
-  .header.header-show {
-    left: 0;
-  }
-
-/*--------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
@@ -1129,12 +1081,14 @@ section,
 
 .like-btn i {
   font-size: 1.5rem;
-  color: #262626; /* Instagram-style neutral */
+  color: #262626;
+  /* Instagram-style neutral */
   transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .like-btn i.liked {
-  color: #ed4956; /* Instagram-like red */
+  color: #ed4956;
+  /* Instagram-like red */
   animation: pop 0.3s ease;
 }
 
@@ -1142,9 +1096,11 @@ section,
   0% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.3);
   }
+
   100% {
     transform: scale(1);
   }
@@ -1890,5 +1846,211 @@ section,
   .profile-actions a {
     flex: 1 1 100%;
     text-align: center;
+  }
+}
+
+/*--------------------------------------------------------------
+# Edit Profile Page
+--------------------------------------------------------------*/
+.edit-profile-container {
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.edit-profile-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.edit-profile-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile-container input {
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.edit-profile-container input:focus {
+  border-color: #007BFF;
+}
+
+.edit-profile-container button {
+  padding: 12px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-container button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 480px) {
+  .edit-profile-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  .edit-profile-container input,
+  .edit-profile-container button {
+    font-size: 14px;
+  }
+}
+/*--------------------------------------------------------------
+# login
+--------------------------------------------------------------*/
+.login-container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease;
+}
+
+.login-container input:focus {
+  border-color: #007BFF;
+}
+
+.login-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+.login-container a {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  text-decoration: none;
+  color: #007BFF;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+  padding: 12px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 30px 20px;
+  }
+}
+/*--------------------------------------------------------------
+# signup
+--------------------------------------------------------------*/
+.signup-container {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 420px;
+}
+
+.signup-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.signup-container input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border 0.3s ease;
+}
+
+.signup-container input:focus {
+  border-color: #7b2cbf;
+  outline: none;
+}
+
+.signup-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #7b2cbf;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-container button:hover {
+  background-color: #5a189a;
+}
+
+.error-message {
+  background: #f8d7da;
+  color: #842029;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  border: 1px solid #f5c2c7;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+@media (max-width: 500px) {
+  .signup-container {
+    padding: 30px 20px;
   }
 }

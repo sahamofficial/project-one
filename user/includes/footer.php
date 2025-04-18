@@ -15,7 +15,7 @@
 
     <div class="container">
         <div class="copyright text-center ">
-            <p>© <span>Copyright</span> <strong class="px-1 sitename">New Royal Flowers</strong> <span>All Rights
+            <p>© <span>Copyright</span> <strong class="px-1">New Royal Flowers</strong> <span>All Rights
                     Reserved</span>
             </p>
         </div>

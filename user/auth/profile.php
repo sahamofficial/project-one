@@ -26,7 +26,6 @@ $contact_no = $user['contact_no'] ?? '';
 
   <div class="profile-actions">
     <a href="edit-profile.php">Edit Profile</a>
-    <a href="change-password.php">Change Password</a>
     <a href="delete-profile.php" onclick="return confirm('Delete account permanently?');">Delete Profile</a>
     <a href="logout.php">Logout</a>
   </div>
